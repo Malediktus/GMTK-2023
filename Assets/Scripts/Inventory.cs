@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
         DraggableItem draggableItem = item.GetComponent<DraggableItem>();
         if (!draggableItem)
         {
-            return;
+            item.AddComponent<DraggableItem>();
         }
 
         foreach (Transform child in transform)
@@ -21,6 +21,15 @@ public class Inventory : MonoBehaviour
 
             item.transform.parent = child;
             break;
+        }
+    }
+
+    public void RemoveItem(GameObject item)
+    {
+        DraggableItem draggableItem = item.GetComponent<DraggableItem>();
+        if (draggableItem)
+        {
+            Destroy(draggableItem);
         }
     }
 }
