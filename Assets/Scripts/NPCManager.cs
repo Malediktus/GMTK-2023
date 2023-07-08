@@ -1,9 +1,10 @@
+using LuckiusDev.Utils.Types;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class NPCManager : MonoBehaviour
+public class NPCManager : Singleton<NPCManager>
 {
     [SerializeField] private int numCharactersAtStart = 5;
     [SerializeField] private Vector2 characterSpawnRate = new Vector2(300, 600);
@@ -15,6 +16,10 @@ public class NPCManager : MonoBehaviour
     private List<NonPlayableCharacter> characters = new List<NonPlayableCharacter>();
     private NonPlayableCharacter currentVisitor;
     private GameObject currentVisitorInstance;
+
+    public bool HasVisitor() {
+        return currentVisitor != null;
+    }
 
     private void Start()
     {
@@ -48,14 +53,14 @@ public class NPCManager : MonoBehaviour
         Dialogue.Instance.Tell(new List<string> { "A new visitor arrived!", "You can buy stuff from him or sell him stuff." }); // TODO: Fix
     }
 
-    public void OnEndDialog()
+    public static void OnEndDialog()
     {
-        if (currentVisitor == null)
+        if (Instance.currentVisitor == null)
         {
             return;
         }
-        Destroy(currentVisitorInstance);
-        currentVisitor = null;
-        currentVisitorInstance = null;
+        Destroy(Instance.currentVisitorInstance);
+        Instance.currentVisitor = null;
+        Instance.currentVisitorInstance = null;
     }
 }
