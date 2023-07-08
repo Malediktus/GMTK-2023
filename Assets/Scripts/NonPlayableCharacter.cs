@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NonPlayableCharacter
 {
-    public List<ShopItem> inventory;
+    public List<ShopItem> inventory = new List<ShopItem>();
     public float money;
     public string name;
     public Sprite sprite;
