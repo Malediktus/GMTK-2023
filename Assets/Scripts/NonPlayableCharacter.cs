@@ -8,12 +8,14 @@ public class NonPlayableCharacter
     public float money;
     public string name;
     public Sprite sprite;
+    public bool available;
 
     public NonPlayableCharacter(Sprite _sprite, string _name)
     {
         sprite = _sprite;
         name = _name;
         money = Random.Range(150, 300);
+        available = true;
     }
 
     public bool EvaluateTrade(ShopItem item, float additional)
