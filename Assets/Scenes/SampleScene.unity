@@ -8782,6 +8782,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numCharactersAtStart: 5
   characterSpawnRate: {x: 300, y: 600}
+  randomCharacterVisitRate: {x: 300, y: 600}
+  qualityLossRate: {x: 5, y: 30}
   onVisitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -8817,6 +8819,10 @@ MonoBehaviour:
   canvas: {fileID: 1575575096}
   characterPrefab: {fileID: 5229425925987135790, guid: 4870f7fda74744ec78bb783147ccb00d, type: 3}
   buyButton: {fileID: 384390927}
+  loot:
+  - {fileID: 0}
+  surviveThreshold: 80
+  surviveChance: 130
 --- !u!1001 &1944945259
 PrefabInstance:
   m_ObjectHideFlags: 0

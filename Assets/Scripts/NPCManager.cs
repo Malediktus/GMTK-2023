@@ -13,12 +13,14 @@ public class NPCManager : Singleton<NPCManager>
     [SerializeField] private int numCharactersAtStart = 5;
     [SerializeField] private Vector2 characterSpawnRate = new Vector2(300, 600);
     [SerializeField] private Vector2 randomCharacterVisitRate = new Vector2(300, 600);
+    [SerializeField] private Vector2 qualityLossRate = new Vector2(5, 30);
     [SerializeField] private UnityEvent<NonPlayableCharacter> onVisitEvent = new UnityEvent<NonPlayableCharacter>();
     [SerializeField] private List<Sprite> characterSprites;
     [SerializeField] private List<string> characterNames;
     [SerializeField] private Transform canvas;
     [SerializeField] private GameObject characterPrefab;
     [SerializeField] private GameObject buyButton;
+    [SerializeField] private List<ShopItem> loot;
     [Header("Simulation")]
     [SerializeField] private float surviveThreshold = 80;
     [SerializeField] private float surviveChance = 130;
@@ -177,7 +179,19 @@ public class NPCManager : Singleton<NPCManager>
 
         Debug.Log("survived");
 
-        // currentVisitor.inventory.Add();
+        foreach (var item in currentVisitor.inventory)
+        {
+            item.quality -= UnityEngine.Random.Range((int)qualityLossRate.x, (int)qualityLossRate.y);
+            if (item.quality <= 0)
+            {
+                currentVisitor.inventory.Remove(item); // Item breaks
+            }
+        }
+
+        currentVisitor.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
+        currentVisitor.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
+        currentVisitor.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
+
         currentVisitor.available = true;
         yield return null;
     }
