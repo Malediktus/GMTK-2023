@@ -2,6 +2,7 @@ using LuckiusDev.Utils.Types;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class NPCManager : Singleton<NPCManager>
@@ -52,9 +53,10 @@ public class NPCManager : Singleton<NPCManager>
         currentVisitor = character;
         GameObject prefabInstance = Instantiate(characterPrefab, canvas);
         prefabInstance.transform.SetAsFirstSibling();
+        prefabInstance.GetComponent<Image>().sprite = character.sprite;
         currentVisitorInstance = prefabInstance;
         onVisitEvent?.Invoke(character);
-        Dialogue.Instance.Tell(new List<string> { "A new visitor arrived!", "You can buy stuff from him or sell him stuff." }); // TODO: Fix
+        Dialogue.Instance.Tell(new List<string> { "A new visitor arrived!", "You can buy stuff from him or sell him stuff." });
     }
 
     public static void OnEndDialog()

@@ -52,7 +52,7 @@ public class ShopItem : MonoBehaviour
         return quality;
     }
 
-    public int EvaluateCost(int additional)
+    public float EvaluateCost(float additional)
     {
         switch(itemType)
         {
