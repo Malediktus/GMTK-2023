@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class ItemSell : MonoBehaviour
 {
     [SerializeField] private Transform sellSlot;
+    [SerializeField] private Slider moneySlider;
     [SerializeField] private TextMeshProUGUI sellText;
     [SerializeField] private MoneyManager moneyManager;
 
@@ -13,9 +15,9 @@ public class ItemSell : MonoBehaviour
     {
         if (sellSlot.childCount > 0)
         {
-            ShopItem item = sellSlot.GetChild(0).GetComponent<ShopItem>();
+            ShopItem item = sellSlot.GetChild(0).GetComponent<DraggableItem>().GetItem();
 
-            sellText.text = item.EvaluateCost(0).ToString() + " coins";
+            sellText.text = (item.EvaluateCost(0) + Mathf.Round(moneySlider.value * 10.0f) * 0.1f).ToString() + " coins";
         }
         else
         {
@@ -27,9 +29,20 @@ public class ItemSell : MonoBehaviour
     {
         if (sellSlot.childCount > 0)
         {
-            ShopItem item = sellSlot.GetChild(0).GetComponent<ShopItem>();
+            DraggableItem item = sellSlot.GetChild(0).GetComponent<DraggableItem>();
+            ShopItem ShopItem = item.GetItem();
 
-            moneyManager.AddMoney(item.EvaluateCost(0));
+            var visitor = NPCManager.Instance.GetCurrentVisitor();
+            float additional = Mathf.Round(moneySlider.value * 10.0f) * 0.1f;
+            if (visitor == null || !visitor.EvaluateTrade(ShopItem, additional))
+            {
+                return;
+            }
+
+            visitor.inventory.Add(ShopItem);
+            visitor.money -= ShopItem.EvaluateCost(additional);
+
+            moneyManager.AddMoney(ShopItem.EvaluateCost(additional));
             Destroy(item.gameObject);
         }
     }

@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopItem : MonoBehaviour
+[CreateAssetMenu(menuName = "ShopItem")]
+public class ShopItem : ScriptableObject
 {
     private const int minLevel = 1;
     private const int maxLevel = 5;
@@ -17,10 +18,10 @@ public class ShopItem : MonoBehaviour
     }
 
     [Header("Item Properties")]
-    [SerializeField] private ShopItemType itemType = ShopItemType.Weapon;
-    [SerializeField] private Sprite image;
-    [SerializeField] [Range(minLevel, maxLevel)] private int level = 1;
-    [SerializeField] [Range(minQuality, maxQuality)] private int quality = 100;
+    [SerializeField] public ShopItemType itemType = ShopItemType.Weapon;
+    [SerializeField] public Sprite image;
+    [SerializeField] [Range(minLevel, maxLevel)] public int level = 1;
+    [SerializeField] [Range(minQuality, maxQuality)] public int quality = 100;
 
     public void SetLevel(int newLevel)
     {
@@ -52,7 +53,7 @@ public class ShopItem : MonoBehaviour
         return quality;
     }
 
-    public int EvaluateCost(int additional)
+    public float EvaluateCost(float additional)
     {
         switch(itemType)
         {
