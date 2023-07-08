@@ -114,7 +114,7 @@ public class NPCManager : Singleton<NPCManager>
             return;
         }
 
-        StartCoroutine("SimulationCoroutine");
+        Simulate();
         Destroy(Instance.currentVisitorInstance);
         Instance.currentVisitor = null;
         Instance.currentVisitorInstance = null;
@@ -132,7 +132,7 @@ public class NPCManager : Singleton<NPCManager>
         }
     }
 
-    private IEnumerable SimulationCoroutine()
+    private void Simulate()
     {
         Debug.Log("Started simulation");
         NonPlayableCharacter character = currentVisitor;
@@ -164,17 +164,20 @@ public class NPCManager : Singleton<NPCManager>
             }
         }
 
+        Debug.Log(bestWeaponCost + bestHelmetCost);
         if ((bestWeaponCost + bestHelmetCost) <= surviveThreshold)
         {
             characters.Remove(character);
-            yield return null; // Die
+            return; // Die
         }
 
-        bool survive = UnityEngine.Random.Range(surviveThreshold, bestWeaponCost + bestHelmetCost) >= surviveChance;
+        float t = UnityEngine.Random.Range(surviveThreshold, bestWeaponCost + bestHelmetCost);
+        Debug.Log(t);
+        bool survive = t >= surviveChance;
         if (!survive)
         {
             characters.Remove(character);
-            yield return null; // Die
+            return; // Die
         }
 
         Debug.Log("survived");
@@ -193,6 +196,6 @@ public class NPCManager : Singleton<NPCManager>
         currentVisitor.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
 
         currentVisitor.available = true;
-        yield return null;
+        return;
     }
 }

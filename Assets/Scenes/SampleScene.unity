@@ -8782,7 +8782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numCharactersAtStart: 5
   characterSpawnRate: {x: 300, y: 600}
-  randomCharacterVisitRate: {x: 300, y: 600}
+  randomCharacterVisitRate: {x: 5, y: 10}
   qualityLossRate: {x: 5, y: 30}
   onVisitEvent:
     m_PersistentCalls:
@@ -8825,7 +8825,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 194e97487c52e4cc9906f3f47e212bb5, type: 2}
   - {fileID: 11400000, guid: 1df1b0455134e4651900d503c3576c1c, type: 2}
   surviveThreshold: 80
-  surviveChance: 130
+  surviveChance: 80
 --- !u!1001 &1944945259
 PrefabInstance:
   m_ObjectHideFlags: 0
