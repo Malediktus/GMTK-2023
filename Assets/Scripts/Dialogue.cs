@@ -29,6 +29,10 @@ public class Dialogue : Singleton<Dialogue>
                 StartCoroutine(NextLine());
             }
         }
+        if (index >= lines.Count -1 && dialogueTextBox.text == lines[index])
+        {
+            StartCoroutine(ClearLine());
+        }
     }
 
     /// <summary>
@@ -75,5 +79,10 @@ public class Dialogue : Singleton<Dialogue>
             dialogueTextBox.text = string.Empty;
             StartCoroutine(TypeLine());
         }
+    }
+
+    IEnumerator ClearLine() {
+        yield return new WaitForSeconds(2.5f);
+        dialogueTextBox.text = string.Empty;
     }
 }
