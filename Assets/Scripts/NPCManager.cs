@@ -21,6 +21,10 @@ public class NPCManager : Singleton<NPCManager>
         return currentVisitor != null;
     }
 
+    public NonPlayableCharacter GetCurrentVisitor() {
+        return currentVisitor;
+    }
+
     private void Start()
     {
         currentVisitor = null;

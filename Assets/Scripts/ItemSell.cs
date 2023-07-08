@@ -29,6 +29,8 @@ public class ItemSell : MonoBehaviour
         {
             ShopItem item = sellSlot.GetChild(0).GetComponent<ShopItem>();
 
+            NPCManager.Instance.GetCurrentVisitor().inventory.Add(item);
+
             moneyManager.AddMoney(item.EvaluateCost(0));
             Destroy(item.gameObject);
         }
