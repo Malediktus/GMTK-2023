@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using static Cinemachine.DocumentationSortingAttribute;
 using static ShopItem;
+using UnityEngine.TextCore.Text;
 
 public class NPCManager : Singleton<NPCManager>
 {
@@ -45,7 +46,12 @@ public class NPCManager : Singleton<NPCManager>
         {
             string name = characterNames[UnityEngine.Random.Range(0, characterNames.Count - 1)];
             characterNames.Remove(name); // Dont reuse names
-            characters.Add(new NonPlayableCharacter(characterSprites[UnityEngine.Random.Range(0, characterSprites.Count - 1)], name));
+            var character = new NonPlayableCharacter(characterSprites[UnityEngine.Random.Range(0, characterSprites.Count - 1)], name);
+            for (int w = UnityEngine.Random.Range(0, 5); w < 0; w++)
+            {
+                character.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
+            }
+            characters.Add(character);
         }
         Invoke("SpawnCharacter", UnityEngine.Random.Range(characterSpawnRate.x, characterSpawnRate.y));
         CharacterVisit(characters[UnityEngine.Random.Range(0, characters.Count - 1)]);
@@ -61,7 +67,12 @@ public class NPCManager : Singleton<NPCManager>
 
         string name = characterNames[UnityEngine.Random.Range(0, characterNames.Count - 1)];
         characterNames.Remove(name); // Dont reuse names
-        characters.Add(new NonPlayableCharacter(characterSprites[UnityEngine.Random.Range(0, characterSprites.Count - 1)], name));
+        var character = new NonPlayableCharacter(characterSprites[UnityEngine.Random.Range(0, characterSprites.Count - 1)], name);
+        for (int i = UnityEngine.Random.Range(0, 5); i < 0; i++)
+        {
+            character.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
+        }
+        characters.Add(character);
         Invoke("SpawnCharacter", UnityEngine.Random.Range(characterSpawnRate.x, characterSpawnRate.y));
     }
 
@@ -118,6 +129,7 @@ public class NPCManager : Singleton<NPCManager>
         Destroy(Instance.currentVisitorInstance);
         Instance.currentVisitor = null;
         Instance.currentVisitorInstance = null;
+        Dialogue.Instance.Stop();
     }
 
     static void ShuffleList<T>(List<T> list)
@@ -191,9 +203,10 @@ public class NPCManager : Singleton<NPCManager>
             }
         }
 
-        currentVisitor.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
-        currentVisitor.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
-        currentVisitor.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
+        for (int i = UnityEngine.Random.Range(0, 5); i < 0; i++)
+        {
+            currentVisitor.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
+        }
 
         currentVisitor.available = true;
         return;
