@@ -29,15 +29,25 @@ public class ToggleButton : MonoBehaviour
     {
         if (state)
         {
-            toggleOffEvent?.Invoke();
-            image.sprite = toggleOffSprite;
+            ToggleOn();
         }
         else
         {
-            toggleOnEvent?.Invoke();
-            image.sprite = toggleOnSprite;
+            ToggleOff();
         }
 
         state = !state;
+    }
+
+    public void ToggleOn()
+    {
+        toggleOnEvent?.Invoke();
+        image.sprite = toggleOnSprite;
+    }
+
+    public void ToggleOff()
+    {
+        toggleOffEvent?.Invoke();
+        image.sprite = toggleOffSprite;
     }
 }
