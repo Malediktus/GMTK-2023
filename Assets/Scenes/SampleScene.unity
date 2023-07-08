@@ -1116,7 +1116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &331839296
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1178,10 +1178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a39ef0cbbe5c449c6bcc89e202cf2ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSlot: {fileID: 1051470123}
-  buyText: {fileID: 1614283668}
-  moneyManager: {fileID: 733693563}
-  draggableItemPrefab: {fileID: 7903902657130281734, guid: 192e3a3c87f784e0baeca19a12f9de7f, type: 3}
+  itemSlot: {fileID: 0}
+  buyText: {fileID: 0}
+  moneyManager: {fileID: 0}
+  draggableItemPrefab: {fileID: 0}
 --- !u!1 &384390927
 GameObject:
   m_ObjectHideFlags: 0
@@ -8819,8 +8819,7 @@ MonoBehaviour:
   canvas: {fileID: 1575575096}
   characterPrefab: {fileID: 5229425925987135790, guid: 4870f7fda74744ec78bb783147ccb00d, type: 3}
   buyButton: {fileID: 384390927}
-  loot:
-  - {fileID: 0}
+  loot: []
   surviveThreshold: 80
   surviveChance: 130
 --- !u!1001 &1944945259
@@ -9914,6 +9913,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryItem
       objectReference: {fileID: 0}
+    - target: {fileID: 8148581268707500484, guid: 12c92a9b7c75ab14da5ddd8656acd591, type: 3}
+      propertyPath: shopItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b8e51e2519f7584a8209ef7e0e9071a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

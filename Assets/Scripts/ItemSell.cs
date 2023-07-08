@@ -15,7 +15,7 @@ public class ItemSell : MonoBehaviour
     {
         if (sellSlot.childCount > 0)
         {
-            ShopItem item = sellSlot.GetChild(0).GetComponent<ShopItem>();
+            ShopItem item = sellSlot.GetChild(0).GetComponent<DraggableItem>().GetItem();
 
             sellText.text = (item.EvaluateCost(0) + Mathf.Round(moneySlider.value * 10.0f) * 0.1f).ToString() + " coins";
         }
@@ -29,18 +29,20 @@ public class ItemSell : MonoBehaviour
     {
         if (sellSlot.childCount > 0)
         {
-            ShopItem item = sellSlot.GetChild(0).GetComponent<ShopItem>();
+            DraggableItem item = sellSlot.GetChild(0).GetComponent<DraggableItem>();
+            ShopItem ShopItem = item.GetItem();
+
             var visitor = NPCManager.Instance.GetCurrentVisitor();
             float additional = Mathf.Round(moneySlider.value * 10.0f) * 0.1f;
-            if (visitor == null || !visitor.EvaluateTrade(item, additional))
+            if (visitor == null || !visitor.EvaluateTrade(ShopItem, additional))
             {
                 return;
             }
 
-            visitor.inventory.Add(item);
-            visitor.money -= item.EvaluateCost(additional);
+            visitor.inventory.Add(ShopItem);
+            visitor.money -= ShopItem.EvaluateCost(additional);
 
-            moneyManager.AddMoney(item.EvaluateCost(additional));
+            moneyManager.AddMoney(ShopItem.EvaluateCost(additional));
             Destroy(item.gameObject);
         }
     }
