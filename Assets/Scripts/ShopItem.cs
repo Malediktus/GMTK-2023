@@ -18,6 +18,7 @@ public class ShopItem : MonoBehaviour
 
     [Header("Item Properties")]
     [SerializeField] private ShopItemType itemType = ShopItemType.Weapon;
+    [SerializeField] private Sprite image;
     [SerializeField] [Range(minLevel, maxLevel)] private int level = 1;
     [SerializeField] [Range(minQuality, maxQuality)] private int quality = 100;
 
@@ -62,5 +63,10 @@ public class ShopItem : MonoBehaviour
             default:
                 return 0;
         }
+    }
+
+    public Sprite GetImage()
+    {
+        return image;
     }
 }

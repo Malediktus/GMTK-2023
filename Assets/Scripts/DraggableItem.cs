@@ -8,10 +8,14 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     private Transform parentAfterDrag;
     private Image image;
+    private ShopItem shopItem;
 
     private void Start()
     {
         image = GetComponent<Image>();
+        shopItem = GetComponent<ShopItem>();
+
+        image.sprite = shopItem.GetImage();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
