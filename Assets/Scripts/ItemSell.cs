@@ -9,7 +9,7 @@ public class ItemSell : MonoBehaviour
     [SerializeField] private TextMeshProUGUI sellText;
     [SerializeField] private MoneyManager moneyManager;
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (sellSlot.childCount > 0)
         {
