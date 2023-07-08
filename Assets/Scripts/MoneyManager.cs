@@ -6,24 +6,26 @@ public class MoneyManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text moneyCount;
     [SerializeField] private float startMoney = 100.0f;
+
+    private float money = 0f;
     private float Money {
         get {
-            return Money;
+            return money;
         }
 
         // I don't know if this works, but it should invoke onMoneyChange when setting the value
         set {
-            Money = value;
+            money = value;
             onMoneyChange?.Invoke();
         }
     }
 
-    UnityEvent onMoneyChange;
+    UnityEvent onMoneyChange = new UnityEvent();
 
     private void Start()
     {
-        Money = startMoney;
         onMoneyChange.AddListener(UpdateText);
+        Money = startMoney;
     }
 
     /// <summary>
