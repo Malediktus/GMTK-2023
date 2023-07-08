@@ -1,4 +1,5 @@
 using LuckiusDev.Utils.Types;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class NPCManager : Singleton<NPCManager>
     [SerializeField] private List<string> characterNames;
     [SerializeField] private Transform canvas;
     [SerializeField] private GameObject characterPrefab;
+    [SerializeField] private GameObject buyButton;
     private List<NonPlayableCharacter> characters = new List<NonPlayableCharacter>();
     private NonPlayableCharacter currentVisitor;
     private GameObject currentVisitorInstance;
@@ -32,20 +34,20 @@ public class NPCManager : Singleton<NPCManager>
         currentVisitorInstance = null;
         for (int i = 0; i < numCharactersAtStart; i++)
         {
-            string name = characterNames[Random.Range(0, characterNames.Count - 1)];
+            string name = characterNames[UnityEngine.Random.Range(0, characterNames.Count - 1)];
             characterNames.Remove(name); // Dont reuse names
-            characters.Add(new NonPlayableCharacter(characterSprites[Random.Range(0, characterSprites.Count - 1)], name));
+            characters.Add(new NonPlayableCharacter(characterSprites[UnityEngine.Random.Range(0, characterSprites.Count - 1)], name));
         }
-        Invoke("SpawnCharacter", Random.Range(characterSpawnRate.x, characterSpawnRate.y));
-        CharacterVisit(characters[Random.Range(0, characters.Count - 1)]);
+        Invoke("SpawnCharacter", UnityEngine.Random.Range(characterSpawnRate.x, characterSpawnRate.y));
+        CharacterVisit(characters[UnityEngine.Random.Range(0, characters.Count - 1)]);
     }
 
     private void SpawnCharacter()
     {
-        string name = characterNames[Random.Range(0, characterNames.Count - 1)];
+        string name = characterNames[UnityEngine.Random.Range(0, characterNames.Count - 1)];
         characterNames.Remove(name); // Dont reuse names
-        characters.Add(new NonPlayableCharacter(characterSprites[Random.Range(0, characterSprites.Count - 1)], name));
-        Invoke("SpawnCharacter", Random.Range(characterSpawnRate.x, characterSpawnRate.y));
+        characters.Add(new NonPlayableCharacter(characterSprites[UnityEngine.Random.Range(0, characterSprites.Count - 1)], name));
+        Invoke("SpawnCharacter", UnityEngine.Random.Range(characterSpawnRate.x, characterSpawnRate.y));
     }
 
     private void CharacterVisit(NonPlayableCharacter character)
@@ -55,12 +57,18 @@ public class NPCManager : Singleton<NPCManager>
         prefabInstance.transform.SetAsFirstSibling();
         prefabInstance.GetComponent<Image>().sprite = character.sprite;
         currentVisitorInstance = prefabInstance;
+        if (character.inventory.Count <= 0)
+        {
+            buyButton.SetActive(false);
+        }
+        ShuffleList<ShopItem>(character.inventory);
         onVisitEvent?.Invoke(character);
         Dialogue.Instance.Tell(new List<string> { "A new visitor arrived!", "You can buy stuff from him or sell him stuff." });
     }
 
-    public static void OnEndDialog()
+    public void OnEndDialog()
     {
+        buyButton.SetActive(true);
         if (Instance.currentVisitor == null)
         {
             return;
@@ -68,5 +76,17 @@ public class NPCManager : Singleton<NPCManager>
         Destroy(Instance.currentVisitorInstance);
         Instance.currentVisitor = null;
         Instance.currentVisitorInstance = null;
+    }
+
+    static void ShuffleList<T>(List<T> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            System.Random random = new System.Random();
+            int j = random.Next(i + 1);
+            T temp = list[i];
+            list[i] = list[j];
+            list[j] = temp;
+        }
     }
 }
