@@ -73,9 +73,11 @@ public class NPCManager : Singleton<NPCManager>
         {
             return;
         }
+        var oldVisitor = currentVisitor;
         Destroy(Instance.currentVisitorInstance);
         Instance.currentVisitor = null;
         Instance.currentVisitorInstance = null;
+        CharacterVisit(oldVisitor);
     }
 
     static void ShuffleList<T>(List<T> list)

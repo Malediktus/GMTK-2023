@@ -17,10 +17,10 @@ public class ShopItem : MonoBehaviour
     }
 
     [Header("Item Properties")]
-    [SerializeField] private ShopItemType itemType = ShopItemType.Weapon;
-    [SerializeField] private Sprite image;
-    [SerializeField] [Range(minLevel, maxLevel)] private int level = 1;
-    [SerializeField] [Range(minQuality, maxQuality)] private int quality = 100;
+    [SerializeField] public ShopItemType itemType = ShopItemType.Weapon;
+    [SerializeField] public Sprite image;
+    [SerializeField] [Range(minLevel, maxLevel)] public int level = 1;
+    [SerializeField] [Range(minQuality, maxQuality)] public int quality = 100;
 
     public void SetLevel(int newLevel)
     {
