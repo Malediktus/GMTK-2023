@@ -669,8 +669,8 @@ RectTransform:
   m_Father: {fileID: 1486205678}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.16666667, y: 0}
-  m_AnchorMax: {x: 0.16666667, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1116,7 +1116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &331839296
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2775,7 +2775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1253426831530549977, guid: 6844c559c682a4159aa767cddeb00e95, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1253426831530549977, guid: 6844c559c682a4159aa767cddeb00e95, type: 3}
       propertyPath: m_AnchorMin.x
@@ -2783,7 +2783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1253426831530549977, guid: 6844c559c682a4159aa767cddeb00e95, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1253426831530549977, guid: 6844c559c682a4159aa767cddeb00e95, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2823,11 +2823,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1253426831530549977, guid: 6844c559c682a4159aa767cddeb00e95, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 100.5081
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1253426831530549977, guid: 6844c559c682a4159aa767cddeb00e95, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -80.83133
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1253426831530549977, guid: 6844c559c682a4159aa767cddeb00e95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3104,9 +3104,9 @@ RectTransform:
   m_Father: {fileID: 1272968567}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100.5081, y: -123.03755}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &897649375
@@ -4727,9 +4727,9 @@ RectTransform:
   m_Father: {fileID: 1272968567}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100.5081, y: -29.31255}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 149.1611, y: 38.6251}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1073133677
@@ -5097,7 +5097,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.16666667, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5601,9 +5601,9 @@ RectTransform:
   m_Father: {fileID: 1272968567}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100.5081, y: -160.24377}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1264978417
@@ -5737,7 +5737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1272968567
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8819,7 +8819,11 @@ MonoBehaviour:
   canvas: {fileID: 1575575096}
   characterPrefab: {fileID: 5229425925987135790, guid: 4870f7fda74744ec78bb783147ccb00d, type: 3}
   buyButton: {fileID: 384390927}
-  loot: []
+  loot:
+  - {fileID: 11400000, guid: 0b621b8f4e7e74912aa3459b04d291f7, type: 2}
+  - {fileID: 11400000, guid: ff2f4063fa9b847aeafc86ad24b92a8d, type: 2}
+  - {fileID: 11400000, guid: 194e97487c52e4cc9906f3f47e212bb5, type: 2}
+  - {fileID: 11400000, guid: 1df1b0455134e4651900d503c3576c1c, type: 2}
   surviveThreshold: 80
   surviveChance: 130
 --- !u!1001 &1944945259
@@ -9913,10 +9917,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryItem
       objectReference: {fileID: 0}
-    - target: {fileID: 8148581268707500484, guid: 12c92a9b7c75ab14da5ddd8656acd591, type: 3}
-      propertyPath: shopItem
-      value: 
-      objectReference: {fileID: 11400000, guid: 9b8e51e2519f7584a8209ef7e0e9071a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

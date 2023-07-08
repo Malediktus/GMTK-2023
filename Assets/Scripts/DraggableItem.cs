@@ -8,7 +8,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     private Transform parentAfterDrag;
     private Image image;
-    [SerializeField] private ShopItem shopItem;
+    [SerializeField] public ShopItem shopItem;
 
     private void Start()
     {
