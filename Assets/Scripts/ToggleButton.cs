@@ -43,11 +43,13 @@ public class ToggleButton : MonoBehaviour
     {
         toggleOnEvent?.Invoke();
         image.sprite = toggleOnSprite;
+        state = true;
     }
 
     public void ToggleOff()
     {
         toggleOffEvent?.Invoke();
         image.sprite = toggleOffSprite;
+        state = false;
     }
 }

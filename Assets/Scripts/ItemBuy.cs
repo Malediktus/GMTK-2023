@@ -14,10 +14,7 @@ public class ItemBuy : MonoBehaviour
     {
         ShopItem shopItem = NPCManager.Instance.GetCurrentVisitor().inventory[0];
         GameObject draggableItemInstance = Instantiate(draggableItemPrefab, itemSlot);
-        ShopItem component = draggableItemInstance.AddComponent<ShopItem>();
-        component.itemType = shopItem.itemType;
-        component.image = shopItem.image;
-        component.level = shopItem.level;
-        component.quality = shopItem.quality;
+
+        draggableItemInstance.GetComponent<DraggableItem>().shopItem = shopItem;
     }
 }

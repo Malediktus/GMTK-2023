@@ -8,12 +8,11 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     private Transform parentAfterDrag;
     private Image image;
-    private ShopItem shopItem;
+    [SerializeField] public ShopItem shopItem;
 
     private void Start()
     {
         image = GetComponent<Image>();
-        shopItem = GetComponent<ShopItem>();
 
         image.sprite = shopItem.GetImage();
     }
@@ -40,5 +39,10 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void SetParentAfterDrag(Transform newParentAfterDrag)
     {
         parentAfterDrag = newParentAfterDrag;
+    }
+
+    public ShopItem GetItem()
+    {
+        return shopItem;
     }
 }
