@@ -26,7 +26,6 @@ public class Inventory : MonoBehaviour
 
     public bool Full()
     {
-        return false;
         foreach (Transform child in transform)
         {
             if (child.childCount > 0)

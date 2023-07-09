@@ -51,6 +51,7 @@ public class ItemSell : MonoBehaviour
 
             visitor.inventory.Add(ShopItem);
             visitor.money -= ShopItem.EvaluateCost(additional);
+            visitor.trust -= Mathf.RoundToInt(moneySlider.value) - Random.Range(10, 60);
 
             moneyManager.AddMoney(ShopItem.EvaluateCost(additional));
             Destroy(item.gameObject);

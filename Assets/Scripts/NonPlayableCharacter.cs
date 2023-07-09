@@ -9,6 +9,7 @@ public class NonPlayableCharacter
     public string name;
     public Sprite sprite;
     public bool available;
+    public int trust;
 
     public NonPlayableCharacter(Sprite _sprite, string _name)
     {
@@ -16,11 +17,12 @@ public class NonPlayableCharacter
         name = _name;
         money = Random.Range(150, 300);
         available = true;
+        trust = 0;
     }
 
     public bool EvaluateTrade(ShopItem item, float additional)
     {
-        if (item.EvaluateCost(additional) <= money)
+        if ((item.EvaluateCost(additional) - (trust / 2)) <= money)
         {
             return true;
         }

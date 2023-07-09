@@ -10,13 +10,15 @@ public class ItemBuy : MonoBehaviour
     [SerializeField] private MoneyManager moneyManager;
     [SerializeField] private GameObject draggableItemPrefab;
     [SerializeField] private Inventory inventory;
+    [SerializeField] private float cost;
 
     private void OnEnable()
     {
         ShopItem shopItem = NPCManager.Instance.GetCurrentVisitor().inventory[0];
         GameObject draggableItemInstance = Instantiate(draggableItemPrefab, itemSlot);
         DraggableItem draggableItemComponent = draggableItemInstance.GetComponent<DraggableItem>();
-        buyText.text = shopItem.EvaluateCost(0) + " coins";
+        cost = shopItem.EvaluateCost(0) + Random.Range(0, NPCManager.Instance.GetCurrentVisitor().trust);
+        buyText.text = cost + " coins";
 
         draggableItemComponent.shopItem = shopItem;
         draggableItemComponent.draggable = false;
@@ -32,16 +34,16 @@ public class ItemBuy : MonoBehaviour
         ShopItem shopItem = item.GetItem();
 
         var visitor = NPCManager.Instance.GetCurrentVisitor();
-        Debug.Log($"{visitor == null} || {inventory.Full()} || {shopItem.EvaluateCost(0) > moneyManager.GetMoney()}");
-        if (visitor == null || inventory.Full() || shopItem.EvaluateCost(0) > moneyManager.GetMoney())
+        Debug.Log($"{visitor == null} || {inventory.Full()} || {cost > moneyManager.GetMoney()}");
+        if (visitor == null || inventory.Full() || cost > moneyManager.GetMoney())
         {
             return;
         }
 
         visitor.inventory.Remove(shopItem);
-        visitor.money += shopItem.EvaluateCost(0);
+        visitor.money += cost;
 
-        moneyManager.SubMoney(shopItem.EvaluateCost(0));
+        moneyManager.SubMoney(cost);
         item.draggable = true;
         inventory.AddItem(item.gameObject);
     }

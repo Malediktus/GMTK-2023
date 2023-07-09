@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using static Cinemachine.DocumentationSortingAttribute;
+using TMPro;
 using static ShopItem;
-using UnityEngine.TextCore.Text;
 
 public class NPCManager : Singleton<NPCManager>
 {
@@ -25,6 +24,8 @@ public class NPCManager : Singleton<NPCManager>
     [Header("Simulation")]
     [SerializeField] private float surviveThreshold = 80;
     [SerializeField] private float surviveChance = 130;
+    [SerializeField] private Transform relations;
+    [SerializeField] private GameObject relationPrefab;
 
     private List<NonPlayableCharacter> characters = new List<NonPlayableCharacter>();
     private NonPlayableCharacter currentVisitor;
@@ -47,6 +48,10 @@ public class NPCManager : Singleton<NPCManager>
             string name = characterNames[UnityEngine.Random.Range(0, characterNames.Count - 1)];
             characterNames.Remove(name); // Dont reuse names
             var character = new NonPlayableCharacter(characterSprites[UnityEngine.Random.Range(0, characterSprites.Count - 1)], name);
+            var instance = Instantiate(relationPrefab, relations);
+            instance.name = character.name;
+            instance.GetComponentInChildren<TMP_Text>().text = character.name;
+
             for (int w = UnityEngine.Random.Range(0, 5); w > 0; w--)
             {
                 character.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
@@ -56,6 +61,15 @@ public class NPCManager : Singleton<NPCManager>
         Invoke("SpawnCharacter", UnityEngine.Random.Range(characterSpawnRate.x, characterSpawnRate.y));
         CharacterVisit(characters[UnityEngine.Random.Range(0, characters.Count - 1)]);
         Invoke("RandomCharacterVisit", UnityEngine.Random.Range(randomCharacterVisitRate.x, randomCharacterVisitRate.y));
+    }
+
+    private void Update()
+    {
+        foreach (var character in characters)
+        {
+            var child = relations.Find(character.name);
+            child.GetComponentInChildren<Slider>().value = character.trust;
+        }
     }
 
     private void SpawnCharacter()
@@ -68,6 +82,9 @@ public class NPCManager : Singleton<NPCManager>
         string name = characterNames[UnityEngine.Random.Range(0, characterNames.Count - 1)];
         characterNames.Remove(name); // Dont reuse names
         var character = new NonPlayableCharacter(characterSprites[UnityEngine.Random.Range(0, characterSprites.Count - 1)], name);
+        var instance = Instantiate(relationPrefab, relations);
+        instance.name = character.name;
+        instance.GetComponentInChildren<TMP_Text>().text = character.name;
         for (int i = UnityEngine.Random.Range(0, 5); i > 0; i--)
         {
             character.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
@@ -184,6 +201,8 @@ public class NPCManager : Singleton<NPCManager>
         Debug.Log(bestWeaponCost + bestHelmetCost);
         if ((bestWeaponCost + bestHelmetCost) <= surviveThreshold)
         {
+            var child = relations.Find(character.name);
+            Destroy(child.gameObject);
             characters.Remove(character);
             return; // Die
         }
@@ -193,6 +212,8 @@ public class NPCManager : Singleton<NPCManager>
         bool survive = t >= surviveChance;
         if (!survive)
         {
+            var child = relations.Find(character.name);
+            Destroy(child.gameObject);
             characters.Remove(character);
             return; // Die
         }
