@@ -15,9 +15,9 @@ public class NonPlayableCharacter
     {
         sprite = _sprite;
         name = _name;
-        money = Random.Range(150, 300);
+        money = Random.Range(150, 500);
         available = true;
-        trust = 0;
+        trust = 50;
     }
 
     public bool EvaluateTrade(ShopItem item, float additional)

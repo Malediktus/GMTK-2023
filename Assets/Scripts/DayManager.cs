@@ -21,10 +21,9 @@ public class DayManager : MonoBehaviour
     {
         hourCounter = hoursPerDay;
         hourCount.text = "Hours left: " + hourCounter;
-        InvokeRepeating("UpdateHours", secondPerHour, secondPerHour);
     }
 
-    private void UpdateHours()
+    public void UpdateHours()
     {
         hourCounter -= 1;
         hourCount.text = "Hours left: " + hourCounter;

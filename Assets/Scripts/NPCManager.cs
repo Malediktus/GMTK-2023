@@ -27,6 +27,7 @@ public class NPCManager : Singleton<NPCManager>
     [SerializeField] private Transform relations;
     [SerializeField] private GameObject relationPrefab;
     [SerializeField] public TMP_Text tooltipText;
+    [SerializeField] private DayManager dayManager;
 
     [SerializeField] public Sprite armor;
     [SerializeField] public Sprite item;
@@ -160,6 +161,7 @@ public class NPCManager : Singleton<NPCManager>
         Instance.currentVisitor = null;
         Instance.currentVisitorInstance = null;
         Dialogue.Instance.Stop();
+        dayManager.UpdateHours();
     }
 
     static void ShuffleList<T>(List<T> list)
@@ -178,11 +180,11 @@ public class NPCManager : Singleton<NPCManager>
     {
         Debug.Log("Started simulation");
         NonPlayableCharacter character = currentVisitor;
-        currentVisitor.available = false;
+        character.available = false;
 
         float cost = 0;
 
-        foreach (var item in currentVisitor.inventory)
+        foreach (var item in character.inventory)
         {
             cost += item.EvaluateCost(0);
         }
@@ -208,22 +210,24 @@ public class NPCManager : Singleton<NPCManager>
 
         Debug.Log("survived");
 
-        List<ShopItem> visitorInventory = new List<ShopItem>(currentVisitor.inventory);
+        List<ShopItem> visitorInventory = new List<ShopItem>(character.inventory);
         foreach (var item in visitorInventory)
         {
             item.quality -= UnityEngine.Random.Range((int)qualityLossRate.x, (int)qualityLossRate.y);
             if (item.quality <= 0)
             {
-                currentVisitor.inventory.Remove(item); // Item breaks
+                character.inventory.Remove(item); // Item breaks
             }
         }
 
         for (int i = UnityEngine.Random.Range(0, 5); i < 0; i++)
         {
-            currentVisitor.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
+            character.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
         }
 
-        currentVisitor.available = true;
+        character.money += UnityEngine.Random.Range(70, 350);
+
+        character.available = true;
         return;
     }
 }
