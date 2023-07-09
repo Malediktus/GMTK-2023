@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 using static ShopItem;
+using UnityEditor;
+using UnityEngine.InputSystem;
 
 public class NPCManager : Singleton<NPCManager>
 {
@@ -21,8 +23,6 @@ public class NPCManager : Singleton<NPCManager>
     [SerializeField] private GameObject characterPrefab;
     [SerializeField] private GameObject buyButton;
     [SerializeField] private List<ShopItem> loot;
-    [SerializeField] private AudioSource doorSound;
-
     [Header("Simulation")]
     [SerializeField] private float surviveThreshold = 80;
     [SerializeField] private float surviveChance = 130;
@@ -36,6 +36,10 @@ public class NPCManager : Singleton<NPCManager>
     [SerializeField] public Sprite potion;
     [SerializeField] public Sprite tresureMap;
     [SerializeField] public Sprite weapon;
+
+    public static List<string> greetings = new List<string> {"Good Day","Hello", "Good Afternoon", "Hey, what is new in stock ?"};
+    public static List<string> buyDialog = new List<string> { "buy1", "buy2" };
+    public static List<string> sellDialog = new List<string> { "You won’t regret it", "Top of my loot!", "You will be back for more" };
 
     private List<NonPlayableCharacter> characters = new List<NonPlayableCharacter>();
     private NonPlayableCharacter currentVisitor;
@@ -111,7 +115,6 @@ public class NPCManager : Singleton<NPCManager>
             return;
         }
 
-        doorSound.Play();
         var randomChar = characters[UnityEngine.Random.Range(0, characters.Count - 1)];
         int i = 10;
         while (!randomChar.available && i > 0)
@@ -148,7 +151,7 @@ public class NPCManager : Singleton<NPCManager>
         }
         ShuffleList<ShopItem>(character.inventory);
         onVisitEvent?.Invoke(character);
-        Dialogue.Instance.Tell(new List<string> { "A new visitor arrived!", "You can buy stuff from him or sell him stuff." });
+        Dialogue.Instance.Tell(greetings[UnityEngine.Random.Range(0, greetings.Count - 1)]);
     }
 
     public void OnEndDialog()

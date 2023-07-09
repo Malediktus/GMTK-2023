@@ -7,6 +7,7 @@ public class MoneyManager : MonoBehaviour
     [SerializeField] private TMP_Text moneyCount;
     [SerializeField] private float startMoney = 100.0f;
     [SerializeField] private UnityEvent onMoneyChange;
+    [SerializeField] public UnityEvent onDeath;
     private float m_Money;
     private float money {
         get {
@@ -15,6 +16,10 @@ public class MoneyManager : MonoBehaviour
 
         set {
             m_Money = value;
+            if (m_Money < 0)
+            {
+                onDeath?.Invoke();
+            }
             onMoneyChange?.Invoke();
         }
     }
@@ -23,6 +28,7 @@ public class MoneyManager : MonoBehaviour
     {
         onMoneyChange.AddListener(UpdateText);
         money = startMoney;
+        onDeath.AddListener(OnDeath);
     }
 
     /// Update the money count text. Prevent from repeating the same code over and over.
@@ -43,5 +49,15 @@ public class MoneyManager : MonoBehaviour
     public void SubMoney(float amount)
     {
         money -= amount;
+    }
+
+    public void OnDeath()
+    {
+        Time.timeScale = 0.0f;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
