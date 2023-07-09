@@ -24,6 +24,14 @@ public class ItemBuy : MonoBehaviour
         draggableItemComponent.draggable = false;
     }
 
+    private void OnDisable()
+    {
+        if (itemSlot.childCount <= 0)
+            return;
+
+        Destroy(itemSlot.GetChild(0));
+    }
+
     public void BuyItem()
     {
         if (itemSlot.childCount <= 0)
