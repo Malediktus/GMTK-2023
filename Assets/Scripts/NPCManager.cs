@@ -214,6 +214,7 @@ public class NPCManager : Singleton<NPCManager>
             var child = relations.Find(character.name);
             Destroy(child.gameObject);
             characters.Remove(character);
+            Dialogue.Instance.Tell($"{character.name} died in their adventure, because they didnt have enough loot!");
             return; // Die
         }
 
@@ -225,6 +226,7 @@ public class NPCManager : Singleton<NPCManager>
             var child = relations.Find(character.name);
             Destroy(child.gameObject);
             characters.Remove(character);
+            Dialogue.Instance.Tell($"{character.name} died in their adventure, because they didnt have enough loot!");
             return; // Die
         }
 
