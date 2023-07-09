@@ -39,9 +39,9 @@ public class NPCManager : Singleton<NPCManager>
     [SerializeField] public Sprite tresureMap;
     [SerializeField] public Sprite weapon;
 
-    public static List<string> greetings = new List<string> {"Good Day","Hello", "Good Afternoon", "Hey, what is new in stock ?"};
-    public static List<string> buyDialog = new List<string> { "You won’t regret it", "Top of my loot!", "You will be back for more" };
-    public static List<string> sellDialog = new List<string> { "Thank you", "This is great!", "I love this product!" };
+    public static List<string> greetings = new List<string> {"Good Day","Hello", "Good Afternoon", "Hey, what is new in stock?"};
+    public static List<string> buyDialog = new List<string> { "You won’t regret it", "Top of my loot!", "You will be back for more", "Best stuff", "Good luck with it" };
+    public static List<string> sellDialog = new List<string> { "Thank you", "This is great!", "I love this product!", "Great offer!", "Enjoyed trading with you!" };
 
     private List<NonPlayableCharacter> characters = new List<NonPlayableCharacter>();
     private NonPlayableCharacter currentVisitor;
@@ -74,9 +74,19 @@ public class NPCManager : Singleton<NPCManager>
             }
             characters.Add(character);
         }
+        ShowTutorial();
+    }
+
+    private void StartContinue()
+    {
         Invoke("SpawnCharacter", UnityEngine.Random.Range(characterSpawnRate.x, characterSpawnRate.y));
         CharacterVisit(characters[UnityEngine.Random.Range(0, characters.Count - 1)]);
         Invoke("RandomCharacterVisit", UnityEngine.Random.Range(randomCharacterVisitRate.x, randomCharacterVisitRate.y));
+    }
+
+    private void ShowTutorial()
+    {
+        Invoke("StartContinue", 5);
     }
 
     private void Update()
