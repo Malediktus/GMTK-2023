@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 public class ItemBuy : MonoBehaviour
@@ -11,6 +12,7 @@ public class ItemBuy : MonoBehaviour
     [SerializeField] private GameObject draggableItemPrefab;
     [SerializeField] private Inventory inventory;
     [SerializeField] private float cost;
+    [SerializeField] private UnityEvent onBuy;
 
     private void OnEnable()
     {
@@ -29,7 +31,7 @@ public class ItemBuy : MonoBehaviour
         if (itemSlot.childCount <= 0)
             return;
 
-        Destroy(itemSlot.GetChild(0));
+        Destroy(itemSlot.GetChild(0).gameObject);
     }
 
     public void BuyItem()
@@ -54,5 +56,6 @@ public class ItemBuy : MonoBehaviour
         moneyManager.SubMoney(cost);
         item.draggable = true;
         inventory.AddItem(item.gameObject);
+        onBuy?.Invoke();
     }
 }

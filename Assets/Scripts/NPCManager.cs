@@ -26,6 +26,7 @@ public class NPCManager : Singleton<NPCManager>
     [SerializeField] private float surviveChance = 130;
     [SerializeField] private Transform relations;
     [SerializeField] private GameObject relationPrefab;
+    [SerializeField] public TMP_Text tooltipText;
 
     private List<NonPlayableCharacter> characters = new List<NonPlayableCharacter>();
     private NonPlayableCharacter currentVisitor;

@@ -10,12 +10,12 @@ public class DraggableItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private Transform parentAfterDrag;
     private Image image;
     [SerializeField] public ShopItem shopItem;
-    [SerializeField] private GameObject tooltip;
-    [SerializeField] private TMP_Text tooltipText;
+    private TMP_Text tooltipText;
     [SerializeField] public bool draggable = true;
 
     private void Start()
     {
+        tooltipText = NPCManager.Instance.tooltipText;
         image = GetComponent<Image>();
 
         image.sprite = shopItem.GetImage();
@@ -58,13 +58,11 @@ public class DraggableItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        tooltip.SetActive(true);
         tooltipText.text = $"Level: {shopItem.level}\nQuality: {shopItem.quality}";
-        tooltip.transform.position = new Vector2(eventData.position.x - 58, eventData.position.y - 17);
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
-        tooltip.SetActive(false);
+        tooltipText.text = "No item\nselected";
     }
 }
