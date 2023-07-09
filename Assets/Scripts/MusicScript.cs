@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MusicScript : MonoBehaviour
 {
-    void Start()
+    private void Update()
     {
         AudioSource[] MusicOnObject = GetComponents<AudioSource>();
 

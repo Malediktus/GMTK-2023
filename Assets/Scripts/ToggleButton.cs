@@ -11,6 +11,7 @@ public class ToggleButton : MonoBehaviour
     [SerializeField] private Sprite toggleOffSprite;
     [SerializeField] private UnityEvent toggleOnEvent;
     [SerializeField] private UnityEvent toggleOffEvent;
+    [SerializeField] AudioSource openAndCloseSound;
     private Button button;
     private Image image;
     private bool state;
@@ -42,6 +43,7 @@ public class ToggleButton : MonoBehaviour
         toggleOnEvent?.Invoke();
         image.sprite = toggleOnSprite;
         state = true;
+        openAndCloseSound.Play();
     }
 
     public void ToggleOff()
@@ -49,5 +51,6 @@ public class ToggleButton : MonoBehaviour
         toggleOffEvent?.Invoke();
         image.sprite = toggleOffSprite;
         state = false;
+        openAndCloseSound.Play();
     }
 }

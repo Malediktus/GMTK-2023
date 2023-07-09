@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SoundScript : MonoBehaviour
 {
-    void Start()
+    private void Update()
     {
-        AudioSource[] SoundsOnObject = GetComponents<AudioSource>();
+        AudioSource[] MusicOnObject = GetComponents<AudioSource>();
 
-        for (int i = 0; i < SoundsOnObject.Length; i++)
+        for (int i = 0; i < MusicOnObject.Length; i++)
         {
-            SoundsOnObject[i].volume = PlayerPrefs.GetFloat("SoundVol");
+            MusicOnObject[i].volume = PlayerPrefs.GetFloat("SoundVol");
         }
     }
 }

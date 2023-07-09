@@ -23,6 +23,8 @@ public class NPCManager : Singleton<NPCManager>
     [SerializeField] private GameObject characterPrefab;
     [SerializeField] private GameObject buyButton;
     [SerializeField] private List<ShopItem> loot;
+    [SerializeField] private AudioSource doorSound;
+
     [Header("Simulation")]
     [SerializeField] private float surviveThreshold = 80;
     [SerializeField] private float surviveChance = 130;
@@ -115,6 +117,7 @@ public class NPCManager : Singleton<NPCManager>
             return;
         }
 
+        doorSound.Play();
         var randomChar = characters[UnityEngine.Random.Range(0, characters.Count - 1)];
         int i = 10;
         while (!randomChar.available && i > 0)
