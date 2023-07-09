@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private void Start()
+    {
+         PlayerPrefs.SetFloat("SoundVol", 1);  
+         PlayerPrefs.SetFloat("MusicVol", 1);
+    }
+
     public void Play()
     {
         SceneManager.LoadScene(1);
