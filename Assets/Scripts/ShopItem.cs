@@ -69,13 +69,13 @@ public class ShopItem : ScriptableObject
                 cost += 50;
                 break;
             case ShopItemType.Potion:
-                cost += 70;
+                cost += 40;
                 break;
             case ShopItemType.TresureMap:
                 cost += 30;
                 break;
             case ShopItemType.Weapon:
-                cost += 800;
+                cost += 80;
                 break;
         }
 
