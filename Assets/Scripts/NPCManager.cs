@@ -208,7 +208,8 @@ public class NPCManager : Singleton<NPCManager>
 
         Debug.Log("survived");
 
-        foreach (var item in currentVisitor.inventory)
+        List<ShopItem> visitorInventory = new List<ShopItem>(currentVisitor.inventory);
+        foreach (var item in visitorInventory)
         {
             item.quality -= UnityEngine.Random.Range((int)qualityLossRate.x, (int)qualityLossRate.y);
             if (item.quality <= 0)
