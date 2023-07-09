@@ -13,8 +13,11 @@ public class ShopItem : ScriptableObject
     // Maybe use ScriptableObjects instead
     public enum ShopItemType
     {
-        Weapon,
-        Helmet
+        Armor,
+        Item,
+        Potion,
+        TresureMap,
+        Weapon
     }
 
     [Header("Item Properties")]
@@ -55,15 +58,7 @@ public class ShopItem : ScriptableObject
 
     public float EvaluateCost(float additional)
     {
-        switch(itemType)
-        {
-            case ShopItemType.Weapon:
-                return level * 100 + quality / 2 + additional; // Just an example... needs to be balanced
-            case ShopItemType.Helmet:
-                return level * 100 + quality / 2 + additional; // Same here
-            default:
-                return 0;
-        }
+        return level * 100 + quality / 2 + additional;
     }
 
     public Sprite GetImage()
