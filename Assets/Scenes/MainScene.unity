@@ -3887,7 +3887,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1105635173}
   m_HandleRect: {fileID: 223574489}
   m_Direction: 0
-  m_MinValue: 1
+  m_MinValue: -200
   m_MaxValue: 500
   m_WholeNumbers: 0
   m_Value: 1
@@ -6901,7 +6901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueTextBox: {fileID: 752844342}
-  textSpeed: 0.075
+  textSpeed: 0.025
   waitDelay: 0.5
   talkingClips:
   - {fileID: 8300000, guid: 97cc2dfdcde6c2940a81af9415c2834f, type: 3}
