@@ -57,5 +57,6 @@ public class ItemBuy : MonoBehaviour
         item.draggable = true;
         inventory.AddItem(item.gameObject);
         onBuy?.Invoke();
+        Dialogue.Instance.Tell(NPCManager.buyDialog[UnityEngine.Random.Range(0, NPCManager.buyDialog.Count - 1)]);
     }
 }

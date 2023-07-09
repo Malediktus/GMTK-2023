@@ -62,6 +62,7 @@ public class ItemSell : MonoBehaviour
             moneyManager.AddMoney(ShopItem.EvaluateCost(additional));
             Destroy(item.gameObject);
             moneySlider.value = 0;
+            Dialogue.Instance.Tell(NPCManager.sellDialog[UnityEngine.Random.Range(0, NPCManager.sellDialog.Count - 1)]);
         }
     }
 }
