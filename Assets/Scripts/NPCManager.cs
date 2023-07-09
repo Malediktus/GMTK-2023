@@ -28,6 +28,12 @@ public class NPCManager : Singleton<NPCManager>
     [SerializeField] private GameObject relationPrefab;
     [SerializeField] public TMP_Text tooltipText;
 
+    [SerializeField] public Sprite armor;
+    [SerializeField] public Sprite item;
+    [SerializeField] public Sprite potion;
+    [SerializeField] public Sprite tresureMap;
+    [SerializeField] public Sprite weapon;
+
     private List<NonPlayableCharacter> characters = new List<NonPlayableCharacter>();
     private NonPlayableCharacter currentVisitor;
     private GameObject currentVisitorInstance;
@@ -174,34 +180,14 @@ public class NPCManager : Singleton<NPCManager>
         NonPlayableCharacter character = currentVisitor;
         currentVisitor.available = false;
 
-        float bestWeaponCost = 0;
-        float bestHelmetCost = 0;
+        float cost = 0;
 
         foreach (var item in currentVisitor.inventory)
         {
-            switch (item.itemType)
-            {
-                case ShopItemType.Weapon:
-                    if (item.EvaluateCost(0) > bestWeaponCost)
-                    {
-                        bestWeaponCost = item.EvaluateCost(0);
-                    }
-                    break;
-
-                case ShopItemType.Helmet:
-                    if (item.EvaluateCost(0) > bestHelmetCost)
-                    {
-                        bestHelmetCost = item.EvaluateCost(0);
-                    }
-                    break;
-
-                default:
-                    break;
-            }
+            cost += item.EvaluateCost(0);
         }
 
-        Debug.Log(bestWeaponCost + bestHelmetCost);
-        if ((bestWeaponCost + bestHelmetCost) <= surviveThreshold)
+        if ((cost) <= surviveThreshold)
         {
             var child = relations.Find(character.name);
             Destroy(child.gameObject);
@@ -209,7 +195,7 @@ public class NPCManager : Singleton<NPCManager>
             return; // Die
         }
 
-        float t = UnityEngine.Random.Range(surviveThreshold, bestWeaponCost + bestHelmetCost);
+        float t = UnityEngine.Random.Range(surviveThreshold, cost);
         Debug.Log(t);
         bool survive = t >= surviveChance;
         if (!survive)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41148922ac8a04b589198a0dbe0994d6, type: 3}
   m_Name: 6
   m_EditorClassIdentifier: 
-  itemType: 0
+  itemType: 1
   image: {fileID: 0}
   level: 2
   quality: 81

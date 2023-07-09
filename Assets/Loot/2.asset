@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   image: {fileID: 0}
-  level: 1
-  quality: 100
+  level: 3
+  quality: 10
