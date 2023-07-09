@@ -9,6 +9,8 @@ public class Dialogue : Singleton<Dialogue>
     [SerializeField] TextMeshProUGUI dialogueTextBox;
     [SerializeField] float textSpeed = .2f; // How much wait before getting the next character in the current line
     [SerializeField] float waitDelay = .5f; // How much wait before going to the next line
+    [SerializeField] AudioClip[] talkingClips;
+    [SerializeField] AudioSource audioSource;
 
     private List<string> lines = new List<string>();
     private int index = 0;
@@ -57,6 +59,7 @@ public class Dialogue : Singleton<Dialogue>
     /// </summary>
     /// <param name="line">The unique line of dialogue you want to pass.</param>
     public void Tell(string line) {
+
         lines = new List<string>();
         lines.Add(line);
         StartDialogue();
@@ -64,6 +67,9 @@ public class Dialogue : Singleton<Dialogue>
 
     void StartDialogue() {
         StopAllCoroutines();
+
+        audioSource.clip = talkingClips[Random.Range(0, talkingClips.Length)];
+        audioSource.Play();
 
         dialogueTextBox.enabled = true;
         dialogueTextBox.text = string.Empty;
