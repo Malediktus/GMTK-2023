@@ -47,7 +47,7 @@ public class NPCManager : Singleton<NPCManager>
             string name = characterNames[UnityEngine.Random.Range(0, characterNames.Count - 1)];
             characterNames.Remove(name); // Dont reuse names
             var character = new NonPlayableCharacter(characterSprites[UnityEngine.Random.Range(0, characterSprites.Count - 1)], name);
-            for (int w = UnityEngine.Random.Range(0, 5); w < 0; w++)
+            for (int w = UnityEngine.Random.Range(0, 5); w > 0; w--)
             {
                 character.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
             }
@@ -68,7 +68,7 @@ public class NPCManager : Singleton<NPCManager>
         string name = characterNames[UnityEngine.Random.Range(0, characterNames.Count - 1)];
         characterNames.Remove(name); // Dont reuse names
         var character = new NonPlayableCharacter(characterSprites[UnityEngine.Random.Range(0, characterSprites.Count - 1)], name);
-        for (int i = UnityEngine.Random.Range(0, 5); i < 0; i++)
+        for (int i = UnityEngine.Random.Range(0, 5); i > 0; i--)
         {
             character.inventory.Add(loot[UnityEngine.Random.Range(0, loot.Count - 1)]);
         }
@@ -104,6 +104,7 @@ public class NPCManager : Singleton<NPCManager>
     private void CharacterVisit(NonPlayableCharacter character)
     {
         currentVisitor = character;
+        Debug.Log(character.inventory.Count);
         GameObject prefabInstance = Instantiate(characterPrefab, canvas);
         prefabInstance.transform.SetAsFirstSibling();
         prefabInstance.GetComponent<Image>().sprite = character.sprite;

@@ -19,9 +19,24 @@ public class Inventory : MonoBehaviour
                 continue;
             }
 
-            item.transform.parent = child;
+            item.transform.SetParent(child);
             break;
         }
+    }
+
+    public bool Full()
+    {
+        return false;
+        foreach (Transform child in transform)
+        {
+            if (child.childCount > 0)
+            {
+                continue;
+            }
+
+            return false;
+        }
+        return true;
     }
 
     public void RemoveItem(GameObject item)

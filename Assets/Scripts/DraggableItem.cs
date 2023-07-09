@@ -12,6 +12,7 @@ public class DraggableItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] public ShopItem shopItem;
     [SerializeField] private GameObject tooltip;
     [SerializeField] private TMP_Text tooltipText;
+    [SerializeField] public bool draggable = true;
 
     private void Start()
     {
@@ -22,6 +23,8 @@ public class DraggableItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!draggable)
+            return;
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
@@ -30,11 +33,15 @@ public class DraggableItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (!draggable)
+            return;
         transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!draggable)
+            return;
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
     }

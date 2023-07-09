@@ -1407,9 +1407,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSlot: {fileID: 1051470123}
-  buyText: {fileID: 1614283668}
+  buyText: {fileID: 538125308}
   moneyManager: {fileID: 733693563}
   draggableItemPrefab: {fileID: 7903902657130281734, guid: 192e3a3c87f784e0baeca19a12f9de7f, type: 3}
+  inventory: {fileID: 818646871}
 --- !u!1 &384390927
 GameObject:
   m_ObjectHideFlags: 0
@@ -2911,6 +2912,7 @@ GameObject:
   m_Component:
   - component: {fileID: 818646869}
   - component: {fileID: 818646870}
+  - component: {fileID: 818646871}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -2990,6 +2992,18 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &818646871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818646868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75206f06ae444001b955506fa9bd133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &839705572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4610,9 +4624,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ItemSell, Assembly-CSharp
-        m_MethodName: SellItem
+      - m_Target: {fileID: 331839299}
+        m_TargetAssemblyTypeName: ItemBuy, Assembly-CSharp
+        m_MethodName: BuyItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6025,6 +6039,7 @@ MonoBehaviour:
   moneySlider: {fileID: 881944432}
   sellText: {fileID: 911220768}
   moneyManager: {fileID: 733693563}
+  inventory: {fileID: 818646871}
 --- !u!114 &1272968569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9943,7 +9958,6 @@ GameObject:
   - component: {fileID: 2113598362}
   - component: {fileID: 2113598361}
   - component: {fileID: 2113598365}
-  - component: {fileID: 2113598364}
   m_Layer: 5
   m_Name: Table
   m_TagString: Untagged
@@ -10012,18 +10026,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113598359}
   m_CullTransparentMesh: 1
---- !u!114 &2113598364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2113598359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a75206f06ae444001b955506fa9bd133, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2113598365
 MonoBehaviour:
   m_ObjectHideFlags: 0
