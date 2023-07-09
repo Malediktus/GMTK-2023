@@ -126,6 +126,7 @@ public class NPCManager : Singleton<NPCManager>
         prefabInstance.transform.SetAsFirstSibling();
         prefabInstance.GetComponent<Image>().sprite = character.sprite;
         currentVisitorInstance = prefabInstance;
+        prefabInstance.GetComponentInChildren<TMP_Text>().text = character.name;
         if (character.inventory.Count <= 0)
         {
             buyButton.SetActive(false);
