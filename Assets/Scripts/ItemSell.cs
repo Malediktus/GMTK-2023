@@ -44,7 +44,13 @@ public class ItemSell : MonoBehaviour
 
             var visitor = NPCManager.Instance.GetCurrentVisitor();
             float additional = Mathf.Round(moneySlider.value * 10.0f) * 0.1f;
-            if (visitor == null || !visitor.EvaluateTrade(ShopItem, additional))
+            
+            if (visitor == null)
+            {
+                return;
+            }
+
+            if (!visitor.EvaluateTrade(ShopItem, additional)) 
             {
                 return;
             }
