@@ -14,6 +14,7 @@ public class ItemSell : MonoBehaviour
     [SerializeField] private Inventory inventory;
     [SerializeField] AudioClip[] sellingClips;
     [SerializeField] AudioSource audioSource;
+    private int disatisfaction;
 
     private void Update()
     {
@@ -77,6 +78,14 @@ public class ItemSell : MonoBehaviour
             if (!visitor.EvaluateTrade(ShopItem, additional))
             {
                 Dialogue.Instance.Tell(refusals[Random.Range(0, refusals.Count - 1)]);
+                disatisfaction += 1;
+
+                if (disatisfaction >= 4)
+                {
+                    disatisfaction = 0;
+                    NPCManager.Instance.OnEndDialog();
+                }
+
                 return;
             }
 
