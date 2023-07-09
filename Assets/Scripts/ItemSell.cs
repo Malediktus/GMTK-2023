@@ -80,7 +80,7 @@ public class ItemSell : MonoBehaviour
                 Dialogue.Instance.Tell(refusals[Random.Range(0, refusals.Count - 1)]);
                 disatisfaction += 1;
 
-                if (disatisfaction >= 4)
+                if (disatisfaction >= 2)
                 {
                     disatisfaction = 0;
                     NPCManager.Instance.OnEndDialog();
