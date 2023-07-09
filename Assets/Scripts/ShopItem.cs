@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 [CreateAssetMenu(menuName = "ShopItem")]
 public class ShopItem : ScriptableObject
@@ -58,7 +59,28 @@ public class ShopItem : ScriptableObject
 
     public float EvaluateCost(float additional)
     {
-        return level * 100 + quality / 2 + additional;
+        float cost = level * 100 + quality / 2 + additional;
+
+        switch (itemType)
+        {
+            case ShopItemType.Armor:
+                cost += 90;
+                break;
+            case ShopItemType.Item:
+                cost += 50;
+                break;
+            case ShopItemType.Potion:
+                cost += 70;
+                break;
+            case ShopItemType.TresureMap:
+                cost += 30;
+                break;
+            case ShopItemType.Weapon:
+                cost += 800;
+                break;
+        }
+
+        return cost;
     }
 
     public Sprite GetImage()
