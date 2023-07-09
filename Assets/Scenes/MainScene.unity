@@ -4046,9 +4046,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Level: 1
+  m_text: 'No item
 
-    Quality: 0'
+    selected'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9428,6 +9428,42 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2977a7eb5b7ea4639924da4be005318e, type: 3}
   - {fileID: 21300000, guid: ef80b30e4c0db45b994b937f1a565179, type: 3}
   - {fileID: 21300000, guid: df6ceacec62b24931ac232cbc638ff6e, type: 3}
+  - {fileID: 21300000, guid: 43d7297a889f64ce29425484121d564c, type: 3}
+  - {fileID: 21300000, guid: 7dd3a3e6803f046ffb72ec97e624ab7a, type: 3}
+  - {fileID: 21300000, guid: a06bbce0916b04a5ab75b3f4a6efa288, type: 3}
+  - {fileID: 21300000, guid: 560516ecadf90471fba19dfeb708a888, type: 3}
+  - {fileID: 21300000, guid: e8ffa22d832a04ae7b53f6e0a5c65b7b, type: 3}
+  - {fileID: 21300000, guid: b6801823642f14c1bbb2bb04099a0cbe, type: 3}
+  - {fileID: 21300000, guid: 10393cddf21874912ae6004c974b640c, type: 3}
+  - {fileID: 21300000, guid: f925402f51cb24ea29188d1aa4af978d, type: 3}
+  - {fileID: 21300000, guid: d449be01635fb4715b8c2ab303c99b47, type: 3}
+  - {fileID: 21300000, guid: 64ee2947e3dc345b4b0dbc85db9da4fe, type: 3}
+  - {fileID: 21300000, guid: 2a4df65eb4f404bb1bcdcfd39558356a, type: 3}
+  - {fileID: 21300000, guid: 445358b549b394f28ab02e156b5ddea8, type: 3}
+  - {fileID: 21300000, guid: c08194583ddcb4295af722f63070e58f, type: 3}
+  - {fileID: 21300000, guid: 3f6169165410e48a7b6b51fc64c22215, type: 3}
+  - {fileID: 21300000, guid: 81f4a56a631eb4acd976e0ee6b644777, type: 3}
+  - {fileID: 21300000, guid: 9a1123e524ffb41e686f38ac9cd228e3, type: 3}
+  - {fileID: 21300000, guid: d6f70da72e71b4822b5c47db28fd4657, type: 3}
+  - {fileID: 21300000, guid: 6e5570ce37ac348f7bf17064cb68a437, type: 3}
+  - {fileID: 21300000, guid: 6477c041796184c5280dc5bf5e0c3dfe, type: 3}
+  - {fileID: 21300000, guid: 93e82b681bfc643789e593081c6f8919, type: 3}
+  - {fileID: 21300000, guid: 8d31c013eeca24599819cd881409ded6, type: 3}
+  - {fileID: 21300000, guid: 038db60cd06f047eab119294886df3bd, type: 3}
+  - {fileID: 21300000, guid: 01ab330e839ae4576bc3cf90346d8941, type: 3}
+  - {fileID: 21300000, guid: 4ebf254af62bc402e8eb679ccc522ad6, type: 3}
+  - {fileID: 21300000, guid: 4150c14f677c644f5976628b3eb78d8f, type: 3}
+  - {fileID: 21300000, guid: cfc791be1d5eb4f48a03ee46c0b550a6, type: 3}
+  - {fileID: 21300000, guid: 5a23c4c8354324b79a7788380b991824, type: 3}
+  - {fileID: 21300000, guid: 4161e827e6b084a35825440aae1c01c5, type: 3}
+  - {fileID: 21300000, guid: 36118044610df4afca7eb63920837114, type: 3}
+  - {fileID: 21300000, guid: e1ccab6cb25a24bbab05c6ffcae74480, type: 3}
+  - {fileID: 21300000, guid: d386c484d3b2649f098d629ece1bcebe, type: 3}
+  - {fileID: 21300000, guid: 0a1a6a336ef4a4729a67bd05a9f7e8c0, type: 3}
+  - {fileID: 21300000, guid: 36fe3746c90a642c4bc9752536a2eaa5, type: 3}
+  - {fileID: 21300000, guid: 544d148bce644471fb7a26d6fb08d6d0, type: 3}
+  - {fileID: 21300000, guid: 209a30adf03b54f6e8efda6501948807, type: 3}
+  - {fileID: 21300000, guid: d16c571355a75421c84d3a3b4289baa3, type: 3}
   characterNames:
   - Aalis
   - Achard
