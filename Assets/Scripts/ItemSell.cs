@@ -10,6 +10,7 @@ public class ItemSell : MonoBehaviour
     [SerializeField] private Slider moneySlider;
     [SerializeField] private TextMeshProUGUI sellText;
     [SerializeField] private MoneyManager moneyManager;
+    [SerializeField] private Inventory inventory;
 
     private void Update()
     {
@@ -23,6 +24,15 @@ public class ItemSell : MonoBehaviour
         {
             sellText.text = "Add an item";
         }
+    }
+
+    private void OnDisable()
+    {
+        if (sellSlot.childCount <= 0)
+            return;
+        DraggableItem item = sellSlot.GetChild(0).GetComponent<DraggableItem>();
+        if (item)
+            inventory.AddItem(item.gameObject);
     }
 
     public void SellItem()
@@ -41,6 +51,7 @@ public class ItemSell : MonoBehaviour
 
             visitor.inventory.Add(ShopItem);
             visitor.money -= ShopItem.EvaluateCost(additional);
+            visitor.trust -= Mathf.RoundToInt(moneySlider.value) - Random.Range(10, 60);
 
             moneyManager.AddMoney(ShopItem.EvaluateCost(additional));
             Destroy(item.gameObject);

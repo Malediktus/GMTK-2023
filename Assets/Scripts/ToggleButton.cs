@@ -29,14 +29,12 @@ public class ToggleButton : MonoBehaviour
     {
         if (state)
         {
-            ToggleOn();
+            ToggleOff();
         }
         else
         {
-            ToggleOff();
+            ToggleOn();
         }
-
-        state = !state;
     }
 
     public void ToggleOn()
