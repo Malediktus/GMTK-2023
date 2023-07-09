@@ -13,7 +13,7 @@ public class DayManager : MonoBehaviour
     [SerializeField] private MoneyManager moneyManager;
     [SerializeField] private int hoursPerDay = 8;
     [SerializeField] private int secondPerHour = 300; // 5 Minutes
-    [SerializeField] private float rent = 50;
+    [SerializeField] private float rent = 100;
     private int hourCounter;
     private int dayCounter;
 
