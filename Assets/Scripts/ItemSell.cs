@@ -11,6 +11,8 @@ public class ItemSell : MonoBehaviour
     [SerializeField] private TextMeshProUGUI sellText;
     [SerializeField] private MoneyManager moneyManager;
     [SerializeField] private Inventory inventory;
+    [SerializeField] AudioClip[] sellingClips;
+    [SerializeField] AudioSource audioSource;
 
     private void Update()
     {
@@ -41,6 +43,27 @@ public class ItemSell : MonoBehaviour
         {
             DraggableItem item = sellSlot.GetChild(0).GetComponent<DraggableItem>();
             ShopItem ShopItem = item.GetItem();
+
+            switch (ShopItem.itemType)
+            {
+                case ShopItem.ShopItemType.Armor:
+                    audioSource.clip = sellingClips[0];
+                    break;
+                case ShopItem.ShopItemType.Item:
+                    audioSource.clip = sellingClips[1];
+                    break;
+                case ShopItem.ShopItemType.Potion:
+                    audioSource.clip = sellingClips[2];
+                    break;
+                case ShopItem.ShopItemType.TresureMap:
+                    audioSource.clip = sellingClips[3];
+                    break;
+                case ShopItem.ShopItemType.Weapon:
+                    audioSource.clip = sellingClips[4];
+                    break;
+            }
+
+            audioSource.Play();
 
             var visitor = NPCManager.Instance.GetCurrentVisitor();
             float additional = Mathf.Round(moneySlider.value * 10.0f) * 0.1f;
