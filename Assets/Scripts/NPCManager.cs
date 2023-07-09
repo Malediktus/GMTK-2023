@@ -23,6 +23,8 @@ public class NPCManager : Singleton<NPCManager>
     [SerializeField] private GameObject characterPrefab;
     [SerializeField] private GameObject buyButton;
     [SerializeField] private List<ShopItem> loot;
+    [SerializeField] private AudioSource audioSource;
+
     [Header("Simulation")]
     [SerializeField] private float surviveThreshold = 80;
     [SerializeField] private float surviveChance = 130;
@@ -109,12 +111,14 @@ public class NPCManager : Singleton<NPCManager>
 
     private void RandomCharacterVisit()
     {
+
         if (currentVisitor != null) // Already a visitor
         {
             Invoke("RandomCharacterVisit", UnityEngine.Random.Range(randomCharacterVisitRate.x, randomCharacterVisitRate.y));
             return;
         }
 
+        audioSource.Play();
         var randomChar = characters[UnityEngine.Random.Range(0, characters.Count - 1)];
         int i = 10;
         while (!randomChar.available && i > 0)
