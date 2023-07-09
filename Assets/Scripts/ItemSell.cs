@@ -61,6 +61,7 @@ public class ItemSell : MonoBehaviour
 
             moneyManager.AddMoney(ShopItem.EvaluateCost(additional));
             Destroy(item.gameObject);
+            moneySlider.value = 0;
         }
     }
 }
