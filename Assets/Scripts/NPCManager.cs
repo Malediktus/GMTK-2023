@@ -112,6 +112,10 @@ public class NPCManager : Singleton<NPCManager>
         {
             buyButton.SetActive(false);
         }
+        else
+        {
+            buyButton.SetActive(true);
+        }
         ShuffleList<ShopItem>(character.inventory);
         onVisitEvent?.Invoke(character);
         Dialogue.Instance.Tell(new List<string> { "A new visitor arrived!", "You can buy stuff from him or sell him stuff." });
