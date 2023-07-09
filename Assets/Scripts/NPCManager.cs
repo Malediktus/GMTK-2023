@@ -86,7 +86,7 @@ public class NPCManager : Singleton<NPCManager>
 
     private void ShowTutorial()
     {
-        Invoke("StartContinue", 5);
+        Invoke("StartContinue", 10);
     }
 
     private void Update()
