@@ -6901,7 +6901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueTextBox: {fileID: 752844342}
-  textSpeed: 0.025
+  textSpeed: 0.05
   waitDelay: 0.5
   talkingClips:
   - {fileID: 8300000, guid: 97cc2dfdcde6c2940a81af9415c2834f, type: 3}
