@@ -6,6 +6,7 @@ using TMPro;
 
 public class ItemSell : MonoBehaviour
 {
+    public static List<string> refusals = new List<string>{"That is way too high!", "Are you trying to rob me?!?!", "I am sorry, this is above my budget"};
     [SerializeField] private Transform sellSlot;
     [SerializeField] private Slider moneySlider;
     [SerializeField] private TextMeshProUGUI sellText;
@@ -73,8 +74,9 @@ public class ItemSell : MonoBehaviour
                 return;
             }
 
-            if (!visitor.EvaluateTrade(ShopItem, additional)) 
+            if (!visitor.EvaluateTrade(ShopItem, additional))
             {
+                Dialogue.Instance.Tell(refusals[Random.Range(0, refusals.Count - 1)]);
                 return;
             }
 
